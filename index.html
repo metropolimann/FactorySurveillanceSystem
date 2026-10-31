@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deep Space</title>
+<script src="assets/js/script.js" defer></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<canvas id="space"></canvas>
+
+<section class="login-card" role="region" aria-label="Sign in">
+    <header class="login-header">
+      <h1 class="login-title">Welcome</h1>
+      <p class="login-subtitle">Sign in to continue</p>
+    </header>
+
+    <form class="login-form" id="loginForm" novalidate>
+      <!-- Username -->
+      <div class="field">
+        <label for="username" class="field-label">Username</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          class="field-input"
+          placeholder="your handle"
+          autocomplete="username"
+          required
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="field">
+        <label for="password" class="field-label">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          class="field-input"
+          placeholder="••••••••"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <!-- PIN: numeric-only password -->
+      <div class="field">
+        <label for="pin" class="field-label">PIN</label>
+        <input
+          id="pin"
+          name="pin"
+          type="password"
+          class="field-input"
+          placeholder="••••"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          maxlength="6"
+          autocomplete="off"
+          required
+        />
+      </div>
+
+      <!-- Utility row -->
+      <div class="form-meta">
+        <button type="button" class="link-btn" id="lostPassword">Lost password?</button>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn-enter">Enter</button>
+    </form>
+</section>
+
+</body>
+</html>

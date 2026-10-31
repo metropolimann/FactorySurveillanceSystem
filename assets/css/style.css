@@ -1,0 +1,308 @@
+  /*html, body {
+    height: 100%;
+    margin: 0;
+    background: #000;
+    overflow: hidden;
+  }
+  #space {
+    position: fixed;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+*/
+  /* =========================================================
+   BASE / CANVAS
+   ========================================================= */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: #000;
+  overflow: hidden;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#space {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* =========================================================
+   LOGIN CARD  (glassmorphism + luxury accents)
+   Pinned 40px from the top-right corner of the viewport.
+   ========================================================= */
+.login-card {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+
+  /* Size */
+  width: 400px;
+  height: 700px;
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  padding: 48px 40px;
+  box-sizing: border-box;
+
+  /* Glass look */
+  background: rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  /* Luxury glow + depth */
+  box-shadow:
+    0 24px 60px -20px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 -40px 120px -40px rgba(96, 165, 250, 0.22) inset;
+
+  color: #e8eefc;
+  z-index: 10;
+  overflow: hidden;
+
+  /* Fade-in on load */
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: cardIn 1.1s cubic-bezier(.2, .7, .2, 1) 0.2s forwards;
+}
+
+/* Thin luminous line across the top of the card (luxury detail) */
+.login-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 16%;
+  right: 16%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(147, 197, 253, 0.85),
+    transparent
+  );
+}
+
+/* Soft radial sheen in the corner */
+.login-card::after {
+  content: "";
+  position: absolute;
+  inset: -40% -40% auto auto;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(
+    circle at 70% 30%,
+    rgba(96, 165, 250, 0.14),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+@keyframes cardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.login-header {
+  margin-bottom: 32px;
+}
+
+.login-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #f4f8ff;
+}
+
+.login-subtitle {
+  margin: 10px 0 0;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(224, 236, 255, 0.42);
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-label {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(224, 236, 255, 0.55);
+  padding-left: 2px;
+}
+
+/* Light-blue glass input */
+.field-input {
+  appearance: none;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: #eaf2ff;
+
+  background: rgba(96, 165, 250, 0.07);
+  border: 1px solid rgba(147, 197, 253, 0.28);
+  border-radius: 12px;
+
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+
+  box-shadow:
+    0 0 0 1px rgba(147, 197, 253, 0.05) inset,
+    0 8px 24px -16px rgba(96, 165, 250, 0.55);
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.15s ease;
+}
+
+.field-input::placeholder {
+  color: rgba(224, 236, 255, 0.28);
+}
+
+.field-input:hover {
+  border-color: rgba(147, 197, 253, 0.45);
+  background: rgba(96, 165, 250, 0.09);
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: rgba(147, 197, 253, 0.9);
+  background: rgba(96, 165, 250, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(147, 197, 253, 0.3) inset,
+    0 0 0 4px rgba(96, 165, 250, 0.15),
+    0 12px 30px -16px rgba(96, 165, 250, 0.85);
+}
+
+/* =========================================================
+   META ROW  ("Lost password?")
+   ========================================================= */
+.form-meta {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -4px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(147, 197, 253, 0.75);
+  cursor: pointer;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.link-btn:hover,
+.link-btn:focus-visible {
+  color: #bfdbfe;
+  text-shadow: 0 0 12px rgba(147, 197, 253, 0.6);
+  outline: none;
+}
+
+/* =========================================================
+   SUBMIT BUTTON  (light-blue luxury)
+   Pinned to the bottom of the card via margin-top: auto.
+   ========================================================= */
+.btn-enter {
+  margin-top: auto;
+  padding: 16px 20px;
+
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #0b1226;
+
+  background: linear-gradient(
+    180deg,
+    rgba(191, 219, 254, 0.95),
+    rgba(147, 197, 253, 0.85)
+  );
+  border: 1px solid rgba(219, 234, 254, 0.9);
+  border-radius: 12px;
+  cursor: pointer;
+
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset,
+    0 10px 30px -12px rgba(147, 197, 253, 0.9),
+    0 0 40px -10px rgba(96, 165, 250, 0.6);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.25s ease,
+    filter 0.2s ease;
+}
+
+.btn-enter:hover {
+  filter: brightness(1.05);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.55) inset,
+    0 14px 36px -12px rgba(147, 197, 253, 1),
+    0 0 60px -8px rgba(96, 165, 250, 0.85);
+}
+
+.btn-enter:active {
+  transform: translateY(1px);
+}
+
+.btn-enter:focus-visible {
+  outline: 2px solid rgba(191, 219, 254, 0.9);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   RESPONSIVE — fall back to a centered sheet on small screens
+   ========================================================= */
+@media (max-width: 560px), (max-height: 780px) {
+  .login-card {
+    top: 16px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    height: auto;
+    max-width: 420px;
+    margin-left: auto;
+    padding: 36px 28px;
+  }
+
+  .btn-enter {
+    margin-top: 28px;
+  }
+}
