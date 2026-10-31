@@ -13,7 +13,6 @@
   let last = performance.now();
   let time = 0;
 
-  const mouse = { x: 0, y: 0, cx: 0, cy: 0 };
   const rand = (a, b) => a + Math.random() * (b - a);
 
   function makeSprite(rgb) {
@@ -86,21 +85,13 @@
       const alpha = s.a * tw;
       if (alpha <= 0.01) continue;
 
-      const ox = mouse.cx * s.d * 26;
-      const oy = mouse.cy * s.d * 26;
-
-      let px = (s.x + ox) % W;
-      if (px < 0) px += W;
-      let py = (s.y + oy) % H;
-      if (py < 0) py += H;
-
       const size = Math.max(2, s.r * 6);
 
       ctx.globalAlpha = alpha;
       ctx.drawImage(
         s.warm ? SPRITE_WARM : SPRITE_COOL,
-        px - size / 2,
-        py - size / 2,
+        s.x - size / 2,
+        s.y - size / 2,
         size,
         size
       );
@@ -181,9 +172,6 @@
     last = now;
     time += dt;
 
-    mouse.cx += (mouse.x - mouse.cx) * 0.04;
-    mouse.cy += (mouse.y - mouse.cy) * 0.04;
-
     ctx.globalCompositeOperation = 'source-over';
     ctx.globalAlpha = 1;
     ctx.fillStyle = '#000';
@@ -195,16 +183,6 @@
     ctx.globalCompositeOperation = 'source-over';
     requestAnimationFrame(frame);
   }
-
-  window.addEventListener('pointermove', (e) => {
-    mouse.x = (e.clientX / W - 0.5) * 2;
-    mouse.y = (e.clientY / H - 0.5) * 2;
-  }, { passive: true });
-
-  window.addEventListener('pointerleave', () => {
-    mouse.x = 0;
-    mouse.y = 0;
-  });
 
   let resizeRaf = 0;
   window.addEventListener('resize', () => {

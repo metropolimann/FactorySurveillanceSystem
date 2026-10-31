@@ -22,6 +22,9 @@ html, body {
   overflow: hidden;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.6), 0 0 16px rgba(147, 197, 253, 0.4);
 }
 
 #space {
